@@ -21,8 +21,11 @@ import android.os.NetworkOnMainThreadException;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.PolyUtil;
+import android.util.*;
+import java.io.IOException;
 import java.util.ArrayList;
-
+import android.os.AsyncTask;
+import java.lang.Thread;
 public class MainActivity extends AppCompatActivity {
 
     private Button b;
@@ -31,6 +34,25 @@ public class MainActivity extends AppCompatActivity {
     private LocationListener listener;
     private Server s;
     private Client c;
+
+
+    private class Connection extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object... arg0) {
+            connect();
+            return null;
+        }
+
+    }
+    private void connect() {
+
+            s=new Server();
+            c=new Client();
+
+
+    }
+
 
 
 
@@ -42,10 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.button);
-        s=new Server();
-        c=new Client();
-        s.myMethod();
-        c.methodClient();
+
 
         // Construct a List<LatLng> representing a Polygon
        final  ArrayList<LatLng> poligono = new ArrayList<>();
@@ -105,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         configure_button();
-    }
+
+
+    }//fine onCreate
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -135,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 //noinspection MissingPermission
                 try {
                     locationManager.requestLocationUpdates("gps", 0, 0, listener);
+                    new Connection().execute(5000);
                 }
                 catch (SecurityException e) {
                     e.getMessage();
@@ -143,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
 
 

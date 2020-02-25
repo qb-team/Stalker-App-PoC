@@ -5,9 +5,9 @@ import javax.json.*;
 
 public class Server {
 
-    public void myMethod() {
+    public Server() {
         try {
-            ServerSocket ssocket = new ServerSocket(4000);
+            ServerSocket ssocket = new ServerSocket(8554);
             Socket socket = ssocket.accept();
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             JsonObject personObject = Json.createObjectBuilder()
