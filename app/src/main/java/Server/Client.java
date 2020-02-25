@@ -6,6 +6,7 @@ import javax.json.*;
 public class Client extends Thread {
         public Client(){
             try {
+                System.out.println("CIAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             //Inizializzazione della socket
             Socket socket = new Socket("127.0.0.1", 8554);
             //Inizializzazione della stream in entrata dalla socket

@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private class Connection extends Thread {
         public void run(){
             try {
-                s=new Server();
                 c=new Client();
+                s=new Server();
                 Thread.sleep(3000);
             } catch(InterruptedException e)
             {
