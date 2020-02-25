@@ -36,25 +36,18 @@ public class MainActivity extends AppCompatActivity {
     private Client c;
 
 
-    private class Connection extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object... arg0) {
-            connect();
-            return null;
+    private class Connection extends Thread {
+        public void run(){
+            try {
+                s=new Server();
+                c=new Client();
+                Thread.sleep(3000);
+            } catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }
         }
-
     }
-    private void connect() {
-
-            s=new Server();
-            c=new Client();
-
-
-    }
-
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.button);
-
 
         // Construct a List<LatLng> representing a Polygon
        final  ArrayList<LatLng> poligono = new ArrayList<>();
@@ -80,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         for (LatLng point : poligono) {
             builder.include(point);
         }
-
-
 
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -100,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 if (isInsideBoundary==true && isInside==true)
                     t.append("\n"+"Sei dentro");
                 else t.append("\n"+"sei fuori");
-
-
             }
 
 
@@ -125,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
         configure_button();
 
-
+        Connection thread = new Connection();
+        thread.start();
     }//fine onCreate
 
     @Override
@@ -156,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                 //noinspection MissingPermission
                 try {
                     locationManager.requestLocationUpdates("gps", 0, 0, listener);
-                    new Connection().execute(5000);
                 }
                 catch (SecurityException e) {
                     e.getMessage();

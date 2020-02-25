@@ -7,6 +7,7 @@ public class Server {
 
     public Server() {
         try {
+            System.out.println("Json inviato");
             ServerSocket ssocket = new ServerSocket(8554);
             Socket socket = ssocket.accept();
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -21,7 +22,6 @@ public class Server {
             writer.writeObject(personObject);
             writer.close();
             out.close();
-            System.out.println("Json inviato");
             socket.close();
             ssocket.close();
 
