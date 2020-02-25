@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 26
     //buildToolsVersion "26.1.0"
@@ -26,4 +27,5 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'javax.json:javax.json-api:1.0'
 }

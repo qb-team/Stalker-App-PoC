@@ -1,5 +1,5 @@
 package testing.gps_location;
-
+import Server.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,7 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.os.NetworkOnMainThreadException;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.PolyUtil;
@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView t;
     private LocationManager locationManager;
     private LocationListener listener;
-
+    private Server s;
+    private Client c;
 
 
 
@@ -41,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         t = (TextView) findViewById(R.id.textView);
         b = (Button) findViewById(R.id.button);
-
-
+        s=new Server();
+        c=new Client();
+        s.myMethod();
+        c.methodClient();
 
         // Construct a List<LatLng> representing a Polygon
        final  ArrayList<LatLng> poligono = new ArrayList<>();
