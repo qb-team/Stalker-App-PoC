@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private Server s;
-    private Client c;g
+    private Client c;
 
 
     private class Connection extends Thread {
