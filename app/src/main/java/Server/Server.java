@@ -12,7 +12,6 @@ public class Server {
 
     public void comunica() {
        try {
-
            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
            JsonObject personObject = Json.createObjectBuilder()
                    .add("45.4112214184", "11.887318333333333")
@@ -26,17 +25,17 @@ public class Server {
            //chiudo connessione col client
            socketClient.close();
        }
-     catch (IOException e) {
+        catch (IOException e) {
         e.printStackTrace();
-    }
+       }
     }
     public Socket attendi() {
         try {
-
+            do {
                 System.out.println("[0] - Server attivo");
                 //inizializzo il servizio
                 server = new ServerSocket(porta);
-                System.out.println("[01 - Server in ascolto sulla porta:" + porta);
+                System.out.println("[0] - Server in ascolto sulla porta:" + porta);
                 //metto in ascolto sulla porta aperta
                 socketClient = server.accept();
                 //evito accesso multiplo dopo aver accettato la richiesta
@@ -45,7 +44,7 @@ public class Server {
                 in = new DataInputStream(socketClient.getInputStream());
                 out = new DataOutputStream(socketClient.getOutputStream());
 
-
+            } while (true);
         }catch(IOException e){
             e.printStackTrace();
         }

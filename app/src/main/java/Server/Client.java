@@ -30,7 +30,6 @@ public class Client  {
         }
     }
 
-
     public Socket connetti() {
         try {
             System.out.println("[0] - Provo a connettermi al server");

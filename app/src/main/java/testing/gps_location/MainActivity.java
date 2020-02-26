@@ -33,25 +33,22 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private Server s;
-    private Client c;
+    private Client c;g
 
 
     private class Connection extends Thread {
         public void run(){
             try {
 
-                s=new Server();
+                s= new Server();
                 s.attendi();
                 c= new Client();
                 c.connetti();
                 c.comunica();
                 s.comunica();
 
-
-
                 Thread.sleep(3000);
-            } catch(InterruptedException e)
-            {
+            } catch(InterruptedException e) {
                 e.printStackTrace();
             }
         }
