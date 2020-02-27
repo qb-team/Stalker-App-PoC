@@ -23,7 +23,6 @@
                 android:clickable="true"
                 android:id="@+id/textView"
                 android:textSize="30sp"
-
                 />
 
         </LinearLayout>
