@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     EditText emailText, passwordText;
     private FirebaseAuth mFirebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    TextView tx1;
+
     private static final int RC_SIGN_IN = 9001;
 
     @Override
@@ -45,22 +45,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_login);
 
         buttonLogin = (SignInButton)findViewById(R.id.buttonAccesso);
+        buttonLogin.setOnClickListener(this);
         emailText = (EditText)findViewById(R.id.editText);
         passwordText = (EditText)findViewById(R.id.editText2);
         mRelative = (RelativeLayout) findViewById(R.id.relativeLayoutUserInfo);
         buttonBack = (Button)findViewById(R.id.buttonCancel);
-        tx1 = (TextView)findViewById(R.id.textView3);
-        tx1.setVisibility(View.GONE);
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("NKeHzKc6UIXddIJtDSd1AGoefaf2")
+        // .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
-       buttonLogin.setOnClickListener(new View.OnClickListener() {
+      /* buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int i = v.getId();
@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     Toast.makeText(getApplicationContext(), "Credenziali errate",Toast.LENGTH_SHORT).show();
                 }
             }*/
-        });
+        //})
 
 
 
@@ -111,7 +111,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         mProgressDialog.show();
     }
 
-
+@Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == RC_SIGN_IN) {
