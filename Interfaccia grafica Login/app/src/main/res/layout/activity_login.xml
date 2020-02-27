@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativeLayoutUserInfo"
     tools:context="android.StalkerAppPoCTracciamento.Login">
 
     <TextView android:text = "Login" android:layout_width="wrap_content"
@@ -69,7 +70,7 @@
         android:textSize="25dp"
         android:layout_toRightOf="@+id/textview" />
 
-    <Button
+    <com.google.android.gms.common.SignInButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="login"
