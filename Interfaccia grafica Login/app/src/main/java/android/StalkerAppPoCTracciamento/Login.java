@@ -32,8 +32,8 @@ public class Login extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(emailText.getText().toString().equals("admin") &&
-                        passwordText.getText().toString().equals("admin")) {//modificare con il server
+                if(emailText.getText().toString().equals("a") &&
+                        passwordText.getText().toString().equals("a")) {//modificare con il server
                     Toast.makeText(getApplicationContext(),
                             "Credenziali corrette",Toast.LENGTH_SHORT).show();
 
