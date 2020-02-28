@@ -2,7 +2,6 @@ package android.StalkerAppPoCTracciamento;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,9 +26,8 @@ import java.util.Map;
 
 public class Registrati extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName,mEmail,mPassword,mPhone;
+    EditText mEmail, mPassword, mConfPassword;
     Button mRegisterBtn;
-    TextView mLoginBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
@@ -40,26 +37,25 @@ public class Registrati extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrati);
 
-        mEmail      = findViewById(R.id.EmailID);
-        mPassword   = findViewById(R.id.PasswordID);
+        mEmail = findViewById(R.id.EmailID);
+        mPassword = findViewById(R.id.PasswordID);
+        mConfPassword = findViewById(R.id.ConfPasswordID);
         mRegisterBtn= findViewById(R.id.RegistratiID);
-
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
         if(fAuth.getCurrentUser() != null){
-
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
         }
-
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String confPassword = mConfPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required.");
@@ -76,10 +72,11 @@ public class Registrati extends AppCompatActivity {
                     return;
                 }
 
-                
-
+                if(!(password.equals(confPassword))){
+                    mConfPassword.setError("Le Password non coincidono");
+                    return;
+                }
                 // register the user in firebase
-
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,21 +97,17 @@ public class Registrati extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                        }else {
-
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
+                        else{
                             Toast.makeText(Registrati.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
             }
         });
-
-
-
-
-
+    }
+    public void back(View v){
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 }
