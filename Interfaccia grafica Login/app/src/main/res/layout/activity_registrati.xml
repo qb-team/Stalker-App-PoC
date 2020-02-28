@@ -24,7 +24,7 @@
     <EditText
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:id = "@+id/editText"
+        android:id = "@+id/EmailID"
         android:hint = "Email"
         android:focusable = "true"
         android:textColorHighlight = "#ff7eff15"
@@ -44,7 +44,7 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/PasswordID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
@@ -63,7 +63,7 @@
         android:textColorHint="#ffff299f" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/ConfPasswordID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
@@ -84,8 +84,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="login"
-        android:id="@+id/button"
+        android:text="Registrati"
+        android:id="@+id/RegistratiID"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textview"
         android:layout_toStartOf="@+id/textview" />
