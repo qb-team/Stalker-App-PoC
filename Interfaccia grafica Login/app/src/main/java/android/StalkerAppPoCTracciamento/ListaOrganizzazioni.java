@@ -16,12 +16,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.NetworkOnMainThreadException;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.maps.android.PolyUtil;
 import android.util.*;
 import java.io.IOException;
@@ -31,10 +34,13 @@ import java.lang.Thread;
 
 public class ListaOrganizzazioni extends AppCompatActivity {
 
-    //private Button b;
+
     private TextView t;
     private LocationManager locationManager;
     private LocationListener listener;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +48,11 @@ public class ListaOrganizzazioni extends AppCompatActivity {
         setContentView(R.layout.activity_lista_organizzazioni);
 
         t = (TextView) findViewById(R.id.textView);
-        //b = (Button) findViewById(R.id.button);
 
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        userId = fAuth.getCurrentUser().getUid();
         // Construct a List<LatLng> representing a Polygon
         final  ArrayList<LatLng> poligono = new ArrayList<>();
 
@@ -99,6 +108,7 @@ public class ListaOrganizzazioni extends AppCompatActivity {
         };
 
         configure_button();
+
     }//fine onCreate
 
     @Override
@@ -139,6 +149,17 @@ public class ListaOrganizzazioni extends AppCompatActivity {
         });*/
     }
 
-
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();//logout
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

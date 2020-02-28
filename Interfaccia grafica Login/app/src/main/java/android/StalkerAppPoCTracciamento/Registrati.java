@@ -32,7 +32,6 @@ public class Registrati extends AppCompatActivity {
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
 
@@ -48,9 +47,9 @@ public class Registrati extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressBar);
 
         if(fAuth.getCurrentUser() != null){
+
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
         }
@@ -104,8 +103,9 @@ public class Registrati extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
                         }else {
+
                             Toast.makeText(Registrati.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+
                         }
                     }
                 });
