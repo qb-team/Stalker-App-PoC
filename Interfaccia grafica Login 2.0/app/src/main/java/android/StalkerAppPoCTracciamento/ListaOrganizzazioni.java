@@ -112,25 +112,23 @@ public class ListaOrganizzazioni extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Sicuro di voler uscire?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        setResult(123);
+       // AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog alertDialog = new AlertDialog.Builder(ListaOrganizzazioni.this).
+        setTitle("Attenzione").setMessage("Sei sicuro di uscire ?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                }).
+        setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which) {
 
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        startActivity(intent);
+                dialog.dismiss();
+            }
+        }).show();
     }
 
 }

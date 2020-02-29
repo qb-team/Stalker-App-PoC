@@ -62,29 +62,30 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+   /* public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Sicuro di voler uscire?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            setResult(123);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
-    public void onBackPressed(){
-        finish();
-    }
+    }*/
+   @Override
+   public void onBackPressed() {
+       // AlertDialog.Builder builder = new AlertDialog.Builder(this);
+       AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).
+               setTitle("Attenzione").setMessage("Sei sicuro di uscire ?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int which) {
+               Intent intent = new Intent(Intent.ACTION_MAIN);
+               intent.addCategory(Intent.CATEGORY_HOME);
+               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               startActivity(intent);
+               dialog.dismiss();
+           }
+       }).
+               setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener(){
+                   public void onClick(DialogInterface dialog, int which) {
+
+                       dialog.dismiss();
+                   }
+               }).show();
+   }
+
 }
 
