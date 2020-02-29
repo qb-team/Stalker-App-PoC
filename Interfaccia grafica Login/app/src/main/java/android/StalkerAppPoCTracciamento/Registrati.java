@@ -2,10 +2,14 @@ package android.StalkerAppPoCTracciamento;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,7 +85,7 @@ public class Registrati extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Registrati.this, "User Created.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registrati.this, "Ti sei registrato e hai effettuato il login", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String,Object> user = new HashMap<>();
@@ -107,7 +111,26 @@ public class Registrati extends AppCompatActivity {
             }
         });
     }
-    public void back(View v){
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Sicuro di voler uscire?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            setResult(123);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
