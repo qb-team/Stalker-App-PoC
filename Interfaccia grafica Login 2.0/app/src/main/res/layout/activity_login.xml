@@ -14,30 +14,15 @@
         android:layout_alignParentTop = "true"
         android:layout_centerHorizontal = "true" />
 
-    <TextView
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:id = "@+id/textView"
-        android:layout_below = "@+id/textview"
-        android:layout_centerHorizontal = "true"
-        android:textColor = "#ff7aff24"
-        android:textSize = "35dp" />
 
     <EditText
         android:id="@+id/Emailtext"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="214dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginRight="-2dp"
-        android:focusable="true"
+        android:layout_centerHorizontal = "true"
+
+        android:layout_marginTop="220dp"
         android:hint="Email"
         android:textColorHighlight="#ff7eff15"
         android:textColorHint="#000000" />
@@ -54,28 +39,22 @@
         android:id="@+id/passwordtext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="368dp"
-        android:ems="10"
+        android:layout_centerHorizontal = "true"
+
+        android:layout_marginTop="270dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColorHint="#000000" />
 
     <Button
         android:id="@+id/buttonAccesso"
-        android:layout_width="183dp"
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-135dp"
-        android:layout_marginLeft="-135dp"
-        android:layout_marginBottom="182dp"
-        android:layout_toEndOf="@+id/textview"
-        android:layout_toRightOf="@+id/textview"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="70dp"
         android:text="Login" />
 
 </RelativeLayout>

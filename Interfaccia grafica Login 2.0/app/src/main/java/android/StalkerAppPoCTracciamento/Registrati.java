@@ -41,10 +41,10 @@ public class Registrati extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrati);
 
-        mEmail = findViewById(R.id.EmailID);
-        mPassword = findViewById(R.id.PasswordID);
-        mConfPassword = findViewById(R.id.ConfPasswordID);
-        mRegisterBtn= findViewById(R.id.RegistratiID);
+        mEmail =(EditText) findViewById(R.id.EmailID);
+        mPassword = (EditText)findViewById(R.id.PasswordID);
+        mConfPassword = (EditText)findViewById(R.id.ConfPasswordID);
+        mRegisterBtn= (Button) findViewById(R.id.RegistratiID);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();

@@ -13,16 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaOrganizzazioni"></activity>
-        <activity android:name=".Registrati" />
-        <activity android:name=".Login" />
+
+
+
+
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListaOrganizzazioni"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".AnotherActivity"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".Registrati"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".Login"
+        android:parentActivityName=".MainActivity"
+        />
+
     </application>
 
 </manifest>

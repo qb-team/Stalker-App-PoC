@@ -26,37 +26,32 @@
 
     <EditText
         android:id="@+id/EmailID"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginLeft="-2dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:focusable="true"
+
+
+        android:layout_centerHorizontal = "true"
+
+        android:layout_marginTop="220dp"
         android:hint="Email"
         android:textColorHighlight="#ff7eff15"
         android:textColorHint="#000000" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_below="@+id/textView"
+
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/PasswordID"
-        android:layout_width="405dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="274dp"
-        android:ems="10"
+        android:layout_marginTop="270dp"
+        android:layout_centerHorizontal = "true"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColorHint="#000000" />
@@ -65,26 +60,22 @@
         android:id="@+id/ConfPasswordID"
         android:layout_width="408dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="333dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:ems="10"
+
+        android:layout_marginTop="331dp"
+
         android:hint="Conferma Password"
         android:inputType="textPassword"
         android:textColorHint="#000000" />
 
     <Button
         android:id="@+id/RegistratiID"
-        android:layout_width="318dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="-231dp"
-        android:layout_marginRight="-231dp"
-        android:layout_marginBottom="182dp"
-        android:layout_toStartOf="@+id/textview"
-        android:layout_toLeftOf="@+id/textview"
-        android:text="Registrati"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerInParent="true"
+
+
+        android:text="Registrati" />
+
 
 </RelativeLayout>
