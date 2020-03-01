@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Stalker App PoC Tracciamento.iml" filepath="$PROJECT_DIR$/Stalker App PoC Tracciamento.iml" group="Stalker App PoC Tracciamento" />
+      <module fileurl="file://$PROJECT_DIR$/Stalker-App-PoC-Tracciamento-Stalker App PoC Tracciamento.iml" filepath="$PROJECT_DIR$/Stalker-App-PoC-Tracciamento-Stalker App PoC Tracciamento.iml" group="Stalker App PoC Tracciamento" />
+      <module fileurl="file://$PROJECT_DIR$/app/Stalker-App-PoC-Tracciamento-app.iml" filepath="$PROJECT_DIR$/app/Stalker-App-PoC-Tracciamento-app.iml" group="Stalker App PoC Tracciamento/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Stalker App PoC Tracciamento/app" />
+      <module fileurl="file://$PROJECT_DIR$/stalker-sdk/stalker-sdk.iml" filepath="$PROJECT_DIR$/stalker-sdk/stalker-sdk.iml" group="Stalker App PoC Tracciamento/stalker-sdk" />
     </modules>
   </component>
 </project>
