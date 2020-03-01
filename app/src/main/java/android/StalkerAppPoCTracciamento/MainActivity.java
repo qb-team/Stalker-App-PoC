@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonL, buttonR;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

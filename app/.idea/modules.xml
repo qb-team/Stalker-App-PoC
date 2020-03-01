@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Stalker App PoC Tracciamento.iml" filepath="$PROJECT_DIR$/../Stalker App PoC Tracciamento.iml" group="Stalker App PoC Tracciamento" />
+      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="Stalker App PoC Tracciamento/app" />
+    </modules>
+  </component>
+</project>
