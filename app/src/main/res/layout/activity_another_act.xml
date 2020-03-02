@@ -30,11 +30,5 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="46dp"
         android:text="Scarica coordinate" />
-    <Button
-        android:id="@+id/aggiorna"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="146dp"
-        android:text="aggiiorna" />
+
 </RelativeLayout>
