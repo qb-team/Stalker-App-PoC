@@ -39,14 +39,16 @@ public class AnotherActivity extends AppCompatActivity {
     TextView Organizzazione;
     FirebaseAuth fAuth;
     int position;
-    final ArrayList<LatLng> poligono = new ArrayList<>();
-    final LatLngBounds.Builder builder = new LatLngBounds.Builder();
     private String risposta;
     private TextView t;
+    private TextView titolo;
     private LocationManager locationManager;
     private LocationListener listener;
     private Button b;
     private RequestQueue mQueue;
+    final ArrayList<LatLng> poligono = new ArrayList<>();
+    final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+    public  String [] listOrg= new String[3];
 
 
     @Override
@@ -58,7 +60,7 @@ public class AnotherActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         t = (TextView) findViewById(R.id.text_view_result);
         b = (Button) findViewById(R.id.coordinate);
-
+        setArray();  // Invocazione
         Parse();    // Invocazione metodo per la lettura dei dati da file Json
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE); // Ottenimento servizi di localizzazione
@@ -103,21 +105,30 @@ public class AnotherActivity extends AppCompatActivity {
         }
 
         Organizzazione = findViewById(R.id.titleText);
-        if (position == 0) {
-            Intent intent = getIntent();
-            String aTitle = intent.getStringExtra("title");
-            Organizzazione.setText(aTitle);
-            actionBar.setTitle(aTitle);
-        }
-        if (position == 1) {
-            Intent intent = getIntent();
-            String aTitle = intent.getStringExtra("title");
-            Organizzazione.setText(aTitle);
-            actionBar.setTitle(aTitle);
+        for(int i=0;i<listOrg.length;i++)
+        {
+            if(position==i) {
+
+                Intent intent = getIntent();
+                Bundle bundle = this.getIntent().getExtras();
+                //int pic = bundle.getInt("image");
+                String aTitle = intent.getStringExtra("title");
+                //imageView.setImageResource(pic);
+                System.out.println(aTitle);
+                Organizzazione.setText(aTitle);
+                actionBar.setTitle(aTitle);
+            }
         }
         //  Fine Funzionalità per ActionBar
 
     }   // Fine onCreate
+
+    // Metodo
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
 
     // Metodo che richiama i vari permessi da far accettare all'utente
     @Override
@@ -207,5 +218,9 @@ public class AnotherActivity extends AppCompatActivity {
         System.out.println(lat+" "+lon);
     }
 
+    //Metodo
+    public void setArray(){
+        this.listOrg=ListaOrganizzazioni.getArray();
+    }
 
 }

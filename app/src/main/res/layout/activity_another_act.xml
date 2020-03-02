@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/titleText"
-        android:text="Torre Archimede"
         android:textColor="@color/grayColor"
         android:textSize="28sp"
         android:gravity="center"
