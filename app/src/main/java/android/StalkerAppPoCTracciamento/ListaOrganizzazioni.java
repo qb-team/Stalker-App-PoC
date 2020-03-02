@@ -74,7 +74,6 @@ public class ListaOrganizzazioni extends AppCompatActivity {
     }
 
 
-
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();//logout
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
