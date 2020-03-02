@@ -1,20 +1,12 @@
 package android.StalkerAppPoCTracciamento;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -23,19 +15,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonL, buttonR;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
+
+    FirebaseAuth fAuth;         //  Punto d'acceso per l'autenticazione a Firebase
+    FirebaseFirestore fStore;   //  Store di Firebase
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // Inizio onCreate
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        if(fAuth.getCurrentUser() != null){
+        if(fAuth.getCurrentUser() != null){     // Verifica se sei autenticato
             startActivity(new Intent(getApplicationContext(),ListaOrganizzazioni.class));
             finish();
         }
@@ -53,24 +45,20 @@ public class MainActivity extends AppCompatActivity {
                 openActivityRegistrati();
             }
         });
-    }
+    } // Fine onCreate
 
-    public void openActivityLogin() {
+    public void openActivityLogin() {    // Apri interfaccia Login
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
-    public void openActivityRegistrati() {
+    public void openActivityRegistrati() {      // Apri interfaccia Registrati
         Intent intent = new Intent(this, Registrati.class);
         startActivity(intent);
     }
 
-    /* public boolean onKeyDown(int keyCode, KeyEvent event) {
-         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-
-     }*/
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() {   // Funzionalità per il backbutton (tasto per andare indietro)
         // AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).
                 setTitle("Attenzione").setMessage("Sei sicuro di uscire ?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

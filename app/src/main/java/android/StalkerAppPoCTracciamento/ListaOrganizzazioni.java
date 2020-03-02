@@ -1,6 +1,5 @@
 package android.StalkerAppPoCTracciamento;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,26 +19,23 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class ListaOrganizzazioni extends AppCompatActivity {
+    // Dichiarazione
     ListView listaOrg;
     FirebaseAuth fAuth;
 
-
-
-
     String Organizzazione[] = {"Torre Archimede", "Azienda"};
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // Inizio onCreate
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_organizzazioni);
+
+        // Inizializzazione
         fAuth = FirebaseAuth.getInstance();
-
-
-
         listaOrg =  findViewById(R.id.ListaOrg);
-        MyAdapter adapter = new MyAdapter(this, Organizzazione);
 
-        listaOrg.setAdapter(adapter);
-        listaOrg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        MyAdapter adapter = new MyAdapter(this, Organizzazione);  // Dichiara e inizializza un oggetto MyAdapter (definito dall'utente)
+        listaOrg.setAdapter(adapter);   // Inserisce nella ListView un adapter (l'adapter contiene più oggetti da visualizzare a schermo)
+        listaOrg.setOnItemClickListener(new AdapterView.OnItemClickListener() {    // Inizio Indirizzamento layout dell'organizzazione scelta
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
@@ -59,15 +55,16 @@ public class ListaOrganizzazioni extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        });
-    }
+        }); // Fine Indirizzamento layout dell'organizzazione scelta
+
+    }// Fine onCreate
 
 
 
-    class MyAdapter extends ArrayAdapter<String> {
+    class MyAdapter extends ArrayAdapter<String> {  // Implementazione classe Adapter
         Context context;
         String Organizzazione[];
-        MyAdapter (Context c, String title[]) {
+        MyAdapter (Context c, String title[]) { // Costruttore
             super(c, R.layout.row, R.id.textView2, title);
             this.context = c;
             this.Organizzazione = title;
@@ -83,15 +80,15 @@ public class ListaOrganizzazioni extends AppCompatActivity {
         }
     }
 
-
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();//logout
+    public void logout(View view) { // Implementazione del pulsante di Logout
+        FirebaseAuth.getInstance().signOut();   //logout
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
+
+    // Funzionalità per il backbutton (tasto per andare indietro)
     @Override
     public void onBackPressed() {
-
         AlertDialog alertDialog = new AlertDialog.Builder(ListaOrganizzazioni.this).
         setTitle("Attenzione").setMessage("Sei sicuro di uscire ?").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
