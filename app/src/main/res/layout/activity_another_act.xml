@@ -16,46 +16,25 @@
         android:gravity="center"
         android:textStyle="bold"
         />
-</RelativeLayout>
-
-<!-- VERSIONE CON LE MODIFICHE DI RICCARDO -->
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="16dp"
-tools:context=".AnotherActivity">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/titleText"
-    android:text="Torre Archimede"
-    android:textColor="@color/grayColor"
-    android:textSize="28sp"
-    android:gravity="center"
-    android:textStyle="bold"
-    />
-<TextView
-    android:id="@+id/text_view_result"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="200dp"
-    android:textColor="@android:color/black"
-    />
-<Button
-    android:id="@+id/coordinate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="46dp"
-    android:text="Scarica coordinate" />
-<Button
-    android:id="@+id/aggiorna"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="146dp"
-    android:text="aggiiorna" />
+    <TextView
+        android:id="@+id/text_view_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:textColor="@android:color/black"
+        />
+    <Button
+        android:id="@+id/coordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="46dp"
+        android:text="Scarica coordinate" />
+    <Button
+        android:id="@+id/aggiorna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="146dp"
+        android:text="aggiiorna" />
 </RelativeLayout>
