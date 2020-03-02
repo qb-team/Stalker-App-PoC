@@ -78,27 +78,6 @@ public class AnotherActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.coordinate);
         Parse();
 
-        /*try {
-
-
-            JSONObject jObject = new JSONObject(risposta);
-            JSONArray jsonArray = jObject.getJSONArray("Organizzazioni");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject org = jsonArray.getJSONObject(i);
-                String organizzazione1 = org.getString("lat");
-                String organizzazione2 = org.getString("long");
-                double o1 = Double.parseDouble(organizzazione1);
-                double o2 = Double.parseDouble(organizzazione2);
-                setCoordinate(o1, o2);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        for (LatLng point : poligono) {
-            builder.include(point);
-        }
-
-
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         listener = new LocationListener() {
             @Override
@@ -129,11 +108,9 @@ public class AnotherActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
+
         configure_button();
-        //if(fAuth.getCurrentUser() != null){
-        //startActivity(new Intent(getApplicationContext(),ListaOrganizzazioni.class));
-        // finish();
-        //}
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -186,9 +163,6 @@ public class AnotherActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //noinspection MissingPermission
                 try {
-
-
-
                     locationManager.requestLocationUpdates("gps", 15000, 0, listener);
                 } catch (SecurityException e) {
                     e.getMessage();
