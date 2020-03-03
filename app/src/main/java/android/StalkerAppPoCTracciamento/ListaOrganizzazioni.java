@@ -70,6 +70,7 @@ public class ListaOrganizzazioni extends AppCompatActivity {
                                 Bundle bundle = new Bundle();
                                 intent.putExtras(bundle);
                                 intent.putExtra("title", Organizzazione[i]);
+                                System.out.println(Organizzazione[i]);
                                 intent.putExtra("position", ""+i);
 
                                 startActivity(intent);

@@ -1,8 +1,10 @@
 package android.StalkerAppPoCTracciamento;
-
+import android.StalkerAppPoCTracciamento.ListaOrganizzazioni;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +28,14 @@ import android.provider.Settings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.PolyUtil;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import org.json.JSONArray;
@@ -42,24 +51,40 @@ public class AnotherActivity extends AppCompatActivity {
     private String risposta;
     private TextView t;
     private TextView titolo;
+    private TextView s;
+    private Button bottoneAccessi;
     private LocationManager locationManager;
     private LocationListener listener;
+
     private Button b;
     private RequestQueue mQueue;
     final ArrayList<LatLng> poligono = new ArrayList<>();
     final LatLngBounds.Builder builder = new LatLngBounds.Builder();
     public  String [] listOrg= new String[3];
-
+    public ArrayList <String> Accessi=new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // Inizio onCreate
+    protected void onCreate(Bundle savedInstanceState) {
+        // Inizio onCreate
+        Intent intent = getIntent();
+        Bundle bundle = this.getIntent().getExtras();
+        //int pic = bundle.getInt("image");
+        String aTitle = intent.getStringExtra("title");
+
         super.onCreate(savedInstanceState);
+        if(aTitle.equals("Torre Archimede"))
+        {
         setContentView(R.layout.activity_another_act);
 
         // Inizializzazione
         fAuth = FirebaseAuth.getInstance();
         t = (TextView) findViewById(R.id.text_view_result);
         b = (Button) findViewById(R.id.coordinate);
+        s = (TextView) findViewById(R.id.TextAccessi);
+        s.setMovementMethod(new ScrollingMovementMethod());
+
+        bottoneAccessi=(Button) findViewById(R.id.storico);
+        Organizzazione = findViewById(R.id.titleText);
         setArray();  // Invocazione
         Parse();    // Invocazione metodo per la lettura dei dati da file Json
 
@@ -72,10 +97,19 @@ public class AnotherActivity extends AppCompatActivity {
                 LatLng test = new LatLng(location.getLatitude(), location.getLongitude());
                 boolean isInsideBoundary = builder.build().contains(test); // true se il test point è all'interno del confine
                 boolean isInside = PolyUtil.containsLocation(test, poligono, true); // false se il punto è all'esterno del poligono
-                if (isInsideBoundary == true && isInside == true)
+                if (isInsideBoundary == true && isInside == true )
+                {   Date date = Calendar.getInstance().getTime();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+                    String strDate = dateFormat.format(date);
+                    Accessi.add(strDate);
+
                     t.append("\n" + "Sei dentro");
+
+                }
                 else
                     t.append("\n" + "Sei fuori");
+
+
             }
 
             // Metodi utili a listener
@@ -104,15 +138,12 @@ public class AnotherActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        Organizzazione = findViewById(R.id.titleText);
+
         for(int i=0;i<listOrg.length;i++)
         {
             if(position==i) {
 
-                Intent intent = getIntent();
-                Bundle bundle = this.getIntent().getExtras();
-                //int pic = bundle.getInt("image");
-                String aTitle = intent.getStringExtra("title");
+
                 //imageView.setImageResource(pic);
                 System.out.println(aTitle);
                 Organizzazione.setText(aTitle);
@@ -120,6 +151,23 @@ public class AnotherActivity extends AppCompatActivity {
             }
         }
         //  Fine Funzionalità per ActionBar
+        bottoneAccessi.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View view) {
+
+                                                  String[] array = new String[Accessi.size()];
+                                                  array = Accessi.toArray(array);
+                                                  for(int i=0;i<array.length;i++){
+
+                                                      s.append(array[i]+" "+"\n");
+                                                  }
+
+
+
+                                              }
+                                          }
+        );
+    }
 
     }   // Fine onCreate
 
@@ -217,7 +265,11 @@ public class AnotherActivity extends AppCompatActivity {
         poligono.add(new LatLng(lat, lon));
         System.out.println(lat+" "+lon);
     }
+public  ArrayList<String> getData(){
+System.out.println(Accessi.size());
+        return Accessi;
 
+}
     //Metodo
     public void setArray(){
         this.listOrg=ListaOrganizzazioni.getArray();
