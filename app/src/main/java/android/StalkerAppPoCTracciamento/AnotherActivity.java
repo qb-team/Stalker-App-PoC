@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 import com.android.volley.Request;
@@ -102,7 +103,10 @@ public class AnotherActivity extends AppCompatActivity {
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                     String strDate = dateFormat.format(date);
                     Accessi.add(strDate);
-
+                    for(Iterator<String> i = Accessi.iterator(); i.hasNext();) {
+                       
+                        if(Accessi.size()>1) i.remove();
+                    }
                     t.append("\n" + "Sei dentro");
 
                 }
