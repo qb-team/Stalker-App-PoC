@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="46dp"
-        android:text="Scarica coordinate" />
+        android:text="Inizia tracciamento" />
 
 </RelativeLayout>
